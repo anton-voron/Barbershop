@@ -18,7 +18,9 @@
 				<li><a href="contacts.html">КОНТАКТЫ</a></li>
 			</ul>
 			<ul class="user-navagation">
-				<li class="login-link"><img src="img/login.svg" alt="Вход"> ВХОД</li>
+				<li class="login-link">
+					<a class="login-link" href="login.html">Вход</a>
+				</li>
 			</ul>		
 		</nav>
 	</header>
@@ -159,9 +161,9 @@
 		<div class="footer-social">
 			<b>ДАВАЙТЕ ДРУЖИТЬ!</b>
 			<ul>
-				<li><a class="social-button" href="#"><img src="img/vk.svg" alt="VK">Вконтакте</a></li>
-				<li><a class="social-button" href="#"> <img src="img/fb.svg" alt="fb">Фейсбук</a></li>
-				<li><a class="social-button" href="#"> <img src="img/inst.svg" alt="inst">Инстаграм</a></li>
+				<li><a class="social-button" href="#" aria-lable="Вконтакте"><img src="img/vk.svg" alt="VK"></a></li>
+				<li><a class="social-button" href="#" aria-lable="Фейсбук"> <img src="img/fb.svg" alt="fb"></a></li>
+				<li><a class="social-button" href="#" aria-lable="Инстаграм"> <img src="img/inst.svg" alt="inst"></a></li>
 			</ul>
 		</div>
 		<p class="footer-copyright">
@@ -171,13 +173,33 @@
 	</footer>
 	<section class="modal modal-login">
 				<h2>Личный кабинет</h2>
-				<p>Введите свой логин и пароль</p>
-				<!--Здесь будет форма -->
-				<span class="modal-close">x</span>
+				<p>Введите свой логин и пароль.</p>
+				<form action="https://echo.htmlacademy.ru/" class="login-form" method="post">
+					<p>
+						<label for="user-login" class="visually-hidden">Логин</label>
+						<input class="login-icon-user" id="user-login" type="text" name="login" value="" placeholder="Логин">
+					</p>
+					<p>
+						<label for="user-password" class="visually-hidden">Пароль</label>
+						<input class="login-icon-password" id="user-password" type="password" name="password" value="" placeholder="Пароль">
+					</p>
+					<p class="login-password-info">
+						<label  class="login-checkbox">
+							<input type="checkbox" name="remebmer" class="visually-hidden">
+						<span class="checkbox-indicator"></span> Запомните меня
+						</label>
+					<a class="restore" href="#">Я забыл пороль!</a>	
+					</p>
+					<button class="button" type="submit">Войти</button>
+				</form>
+				<button class="button" type="button">Закрыть</button>
 			</section>
 			<section class="modal modal-map">
 				<h2 class="visually-hidden">Как добраться</h2>
-				<span class="modal-close">x</span>
+				<p>
+					<img src="img/map.jpg" width="780" height="560" alt="Офис компании по адресу Г. САНКТ-ПЕТЕРБУРГ, УЛ. Б. КОНЮШЕННАЯ, Д. 19/8">
+				</p>
+				<button class="modal-close" type="button">Закрыть</button>
 			</section>
 </body>
 </html>

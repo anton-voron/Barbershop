@@ -18,7 +18,9 @@
 				<li><a href="contacts.html">КОНТАКТЫ</a></li>
 			</ul>
 			<ul class="user-navagation">
-				<li class="login-link"><img src="img/login.svg" alt="Вход"> ВХОД</li>
+				<li class="login-link">
+					<a class="login-link" href="login.html">Вход</a>
+				</li>
 			</ul>
 		</nav>
 	</header>
@@ -61,8 +63,8 @@
 				<figure class="gallery-contant">
 					<a href="#">
 						<img src="img/studio.jpg" wigth="286" height="164" alt="Интерьер">
-						<span class="button gallery-button gallery-button-back">Назад</span>
-						<span class="button gallery-button gallery-button-next">Вперёд</span>
+						<button class="button gallery-button gallery-button-back">Назад</button>
+						<button class="button gallery-button gallery-button-next">Вперёд</button>
 					</a>
 				</figure>
 			</section>
@@ -83,10 +85,26 @@
 			</section>
 			<section class="appointment">
 				<h2>ЗАПИСАТЬСЯ</h2>
-				<p>УКАЖИТЕ ЖЕЛАЕМУЮ ДАТУ И ВРЕМЯ И МЫ СВЯЖЕМСЯ С ВАМИ ДЛЯ ПОДТВЕРЖДЕНИЯ 
+				<p class="appointment-info">УКАЖИТЕ ЖЕЛАЕМУЮ ДАТУ И ВРЕМЯ И МЫ СВЯЖЕМСЯ С ВАМИ ДЛЯ ПОДТВЕРЖДЕНИЯ 
 				</p>
-				<!-- Здесь будет форма -->
-
+				<form calss="appointment-form" action="https://echo.htmlacademy.ru/" method="post">
+					<p class="appointment-item">
+						<label for="appointment-date">Дата</label>
+						<input id="appointment-date" type="text" name="date" value="" placeholder="08.10.2017">
+					</p>
+					<p class="appointment-item">
+						<label for="appointment-time">Время</label>
+						<input id="appointment-time" type="text" name="time" value="" placeholder="10:00">
+					</p>
+					<p class="appointment-item">
+						<label for="appointment-name">Имя</label>
+						<input id="appointment-name" type="text" name="name" value="" placeholder="Борода">
+					</p>
+					<p class="appointment-item">
+						<label for="appointment-tel">Телефон</label>
+						<input id="appointment-tel" type="tel" name="tel" value="" placeholder="+7 123 456-78-90">
+					</p>
+					<button calss="button" type="submit" >Отправить</button>
 			</section>
 		</main>
 		<footer class="main-footer">
@@ -99,10 +117,10 @@
 				<div class="footer-social">
 					<b>Давайте дружить!</b>
 					<ul>
-						<li><a class="social-button" href="#"><img src="img/vk.svg" alt="VK">Вконтакте</a></li>
-						<li><a class="social-button" href="#"> <img src="img/fb.svg" alt="fb">Фейсбук</a></li>
-						<li><a class="social-button" href="#"> <img src="img/inst.svg" alt="inst">Инстаграм</a></li>
-					</ul>
+				<li><a class="social-button" href="#" aria-lable="Вконтакте"><img src="img/vk.svg" alt="VK"></a></li>
+				<li><a class="social-button" href="#" aria-lable="Фейсбук"> <img src="img/fb.svg" alt="fb"></a></li>
+				<li><a class="social-button" href="#" aria-lable="Инстаграм"> <img src="img/inst.svg" alt="inst"></a></li>
+			</ul>
 				</div>
 				<p class="footer-copyright">
 					<b>Разработано:</b>
@@ -111,13 +129,33 @@
 			</footer>
 			<section class="modal modal-login">
 				<h2>Личный кабинет</h2>
-				<p>Введите свой логин и пароль</p>
-				<!--Здесь будет форма -->
-				<span class="modal-close">x</span>
+				<p>Введите свой логин и пароль.</p>
+				<form action="https://echo.htmlacademy.ru/" class="login-form" method="post">
+					<p>
+						<label for="user-login" class="visually-hidden">Логин</label>
+						<input class="login-icon-user" id="user-login" type="text" name="login" value="" placeholder="Логин">
+					</p>
+					<p>
+						<label for="user-password" class="visually-hidden">Пароль</label>
+						<input class="login-icon-password" id="user-password" type="password" name="password" value="" placeholder="Пароль">
+					</p>
+					<p class="login-password-info">
+						<label  class="login-checkbox">
+							<input type="checkbox" name="remebmer" class="visually-hidden">
+						<span class="checkbox-indicator"></span> Запомните меня
+						</label>
+					<a class="restore" href="#">Я забыл пороль!</a>	
+					</p>
+					<button class="button" type="submit">Войти</button>
+				</form>
+				<button class="button" type="button">Закрыть</button>
 			</section>
 			<section class="modal modal-map">
 				<h2 class="visually-hidden">Как добраться</h2>
-				<span class="modal-close">x</span>
+				<p>
+					<img src="img/map.jpg" width="780" height="560" alt="Офис компании по адресу Г. САНКТ-ПЕТЕРБУРГ, УЛ. Б. КОНЮШЕННАЯ, Д. 19/8">
+				</p>
+				<button class="modal-close" type="button">Закрыть</button>
 			</section>
 </body>
 </html>
