@@ -1,1 +1,187 @@
-﻿
+﻿body{
+	margin: 0;
+	padding: 0;
+
+	font-family: "PT Sans Narrow", Arial, sans-serif;
+	font-size: 14px;
+	line-height: 24px;
+	font-weight: 700; /* в гугле когда мы подключили шрит стоияло именно это значение, прописуем для того, чтобы не было несоответствия*/
+	color: #f7f4f1;
+	text-transform: uppercase;
+
+	
+	background-color: #000000;
+	background-image: url("../img/bg.jpg");
+	background-position: top center;
+	background-repeat: no-repeat;
+}
+
+
+a{
+	text-decoration: none; /*- убирает подчеркивание */
+}
+.inner-page{ /* Меняем стилизацию в body для внутренних страниц (на главной у нас фон чёрный - текст светлый мы делаем фон светлый - текст чёрный)*/
+	color: #000000;
+
+	background-color: #f7f4f1;
+	background-image: url("../img/bg-section.jpg");
+	background-position: 0 0;
+	background-repeat: repeat;
+}
+
+.button{
+font: inherit; /* - принудительно наследует параметры шрифта от родителя body*/
+
+text-align: center;
+color: #ffffff;
+vertical-align: middle; /* - выравнивает текст*/
+text-transform: uppercase;
+
+background-color: #000000;
+border: none;
+}
+
+.button:hover,
+.button:focus,
+.buttio:active{ /* когда кнопка в активном состянии*/
+	background-color: #663d15;
+}
+
+.main-navigation{
+	font-size: 16px;
+	line-height: 20px;
+	color: #f7f4f1;
+
+	background-color: #000000;
+}
+.site-navigation,
+.user-navigation {
+	list-style: none;
+}
+
+.site-navigation a,
+.user-navigation a {
+	color: #f7f4f1;
+}
+/* Настройка отрисовки при наведении  и клике*/
+.site-navigation a:hover,
+.site-navigation a:focus,
+.user-navigation a:hover,
+.user-navigation a:focus{
+	background-color: #242424;
+}
+
+
+.features-list{
+	list-style: none; /* Убрать у UL порядковое обозначение*/
+}
+
+.features-item{
+	text-align: center; /* Рассположить текст по-центру */
+}
+.features-item h3{
+	font-size: 30px;
+	line-height: 42px;
+}
+.index-columns{
+	color: #000000;
+
+	background-color: #f7f4f1;
+	background-image: url("../img/bg-section.jpg");
+	background-position: 0 0;
+	background-repeat: repeat;
+}
+.index-columns h2{
+	font-size: 30px;
+	line-height: 42px;
+}
+.news-list{
+	list-style: none;
+}
+/* Убираем апперкейс который задали в body на весь документ*/
+.news-list time{
+	text-transform: none;
+}
+.gallery-content{
+	background-color: #e5e5e5;
+	border: 7px solid #ffffff;
+}
+.appointment-item input{ /*стилизуем формы для ввода*/
+	font: inherit;
+
+	background-color: transparent;
+	border: 2px solid #000000; /* задаём поле и цвет*/
+}
+.appointment-item input:focus{
+	border-color: #663d15;
+}
+.main-footer{
+	color: #ffffff;
+
+	background-color: #232323;
+	background-image: url("../img/bg-footer.jpg");
+	background-position: 0 0;
+	background-repeat: repeat;
+}
+.footer-contacts a{
+	color: #ffffff;
+	text-decoration: underline ;/* Вернуть подчёркивание для ссылки*/
+}
+.footer-social{
+	text-align: center; /* Рассположение текта по-центру*/
+}
+.footer-social ul{
+	list-style: none;
+}
+.social-button{
+	color: #ffffff;
+	text-decoration: none;
+}
+.footer-copyright{
+	text-align: center;
+
+}
+.footer-copyright a:hover,
+.footer-copyright a:focus{
+	color: #000000;
+
+	background-color: #ffffff;
+}
+.modal{
+	color: #000000;
+
+	background-color: #f7f4f1;
+	background-image: url("../img/bg-section.jpg");
+	background-position: 0 0;
+	background-repeat: repeat;
+}
+.modal h2{
+	font-size: 30px;
+	line-height: 42px;
+}
+.login-icon-user,
+.login-icon-password{
+	font: inherit;
+	color: #000000;
+	text-transform: uppercase;
+
+	background-color: #f9f6f3;
+	border: 2px solid #000000;
+}
+
+.login-icon-user:hover,
+.login-icon-password:hover{
+	border-color: #663d15;
+}
+.login-checkbox:hover,
+.login-checkbox:focus{
+	color: #663d15;
+}
+.restore {
+	color: #000000;
+	text-decoration: underline;
+}
+.restore:hover,
+.restore:focus{
+	text-decoration: none;
+}
