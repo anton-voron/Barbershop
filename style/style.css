@@ -1,3 +1,8 @@
+html,
+body{
+	min-width: 1122px;
+	min-height: 1750px;
+}
 body{
 	margin: 0;
 	padding: 0;
@@ -19,6 +24,9 @@ body{
 
 a{
 	text-decoration: none; /*- убирает подчеркивание */
+}
+.main-header{
+	margin-bottom: 75px;
 }
 .inner-page{ /* Меняем стилизацию в body для внутренних страниц (на главной у нас фон чёрный - текст светлый мы делаем фон светлый - текст чёрный)*/
 	color: #000000;
@@ -46,19 +54,60 @@ border: none;
 .buttio:active{ /* когда кнопка в активном состянии*/
 	background-color: #663d15;
 }
-
+.container{
+	width: 940px;
+	margin: 0 auto;
+	padding: 0 10px;
+}
 .main-navigation{
 	font-size: 16px;
 	line-height: 20px;
 	color: #f7f4f1;
 
+	background-color: transparent;
+
+	display: flex;
+	flex-direction: column; /*Поворачиваем перпендикулярную ось */
+	align-items: center; /*Выравниваем ОБЪЕКТЫ по-центру*/
+}
+.main-navigation-wrapper{
+	width: 100%;
+	margin-bottom: 60px;
+
 	background-color: #000000;
 }
-.site-navigation,
-.user-navigation {
-	list-style: none;
+.main-navigation-wrapper .container{
+	display: flex;
+	justify-content: space-between; /* Распределяет контент равномерно между вем блоком*/
 }
+.main-header-logo{
+	order: 3;
+	width: 371px;
+	height: 155px;
 
+	/*Временно для сетки*/	
+	/*display: block;*/ /* - до display:flex строчный элемент <а> (картинка в ссылке) 
+	нуждалась в преобразование в блочный элемент, когда преобразовали во флекс элемент display:block - уже не надо*/
+}
+.site-navigation{
+	width: 620px;
+	margin: 0;
+	padding: 0;
+
+	list-style: none;
+
+	/*Временно для сетки*/
+	min-height: 70px;
+}
+.user-navigation{
+	width: 140px;
+	margin: 0;
+	padding: 0;
+
+	list-style: none;
+	/*Временно для сетки*/
+	min-height: 70px;
+}
 .site-navigation a,
 .user-navigation a {
 	color: #f7f4f1;
@@ -75,14 +124,23 @@ border: none;
 	font-size: 30px;
 	line-height: 42px;
 }
-
-
+.features{
+	margin-bottom: 80px;
+}
 .features-list{
+	display: flex; /*сделали расположение в 1 строчку типа display:inline-block*/
+	justify-content: space-between; /* Распределяет контент равномерно между вем блоком*/
+	margin: 0;
+	padding: 0;
+	
+
 	list-style: none; /* Убрать у UL порядковое обозначение*/
 }
 
 .features-item{
 	text-align: center; /* Рассположить текст по-центру */
+
+	width: 300px;
 }
 .features-item h3{
 	font-size: 30px;
@@ -95,10 +153,18 @@ border: none;
 	background-image: url("../img/bg-section.jpg");
 	background-position: 0 0;
 	background-repeat: repeat;
+
+	padding: 50px 80px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 35px;
 }
 .index-columns h2{
 	font-size: 30px;
 	line-height: 42px;
+}
+.news{
+	width: 380px;
 }
 .news-list{
 	list-style: none;
@@ -107,9 +173,18 @@ border: none;
 .news-list time{
 	text-transform: none;
 }
+.gallery{
+	width: 300px;
+}
 .gallery-content{
 	background-color: #e5e5e5;
 	border: 7px solid #ffffff;
+}
+.contacts{
+	width: 380px;
+}
+.appointment{
+	width: 300px;
 }
 .appointment-item input{ /*стилизуем формы для ввода*/
 	font: inherit; /* Наследуем стиль тексата от родительского body*/
@@ -127,6 +202,19 @@ border: none;
 	background-image: url("../img/bg-footer.jpg");
 	background-position: 0 0;
 	background-repeat: repeat;
+
+	margin-top: 65px;
+	padding: 60px 0; 
+}
+.main-footer .container{
+	display: flex;
+	/*justify-content: space-between; - не подойдёт, так как разные отступы между встроенными блочками
+	Используем margin*/
+}
+.footer-contacts{
+	margin: 0; 	/*Так как это АБЗАЦ <p> текст у него по умолчанию есть margin, его нужно обнулить НЕ ЗАБЫВАЕМ!*/
+	width: 320px;
+	margin-right: 80px;
 }
 .footer-contacts a{
 	color: #ffffff;
@@ -134,6 +222,8 @@ border: none;
 }
 .footer-social{
 	text-align: center; /* Рассположение текта по-центру*/
+
+	width: 145px;
 }
 .footer-social ul{
 	list-style: none;
@@ -145,6 +235,9 @@ border: none;
 .footer-copyright{
 	text-align: center;
 
+	margin: 0; 	/*Так как это текст у него по умолчанию есть margin, его нужно обнулить*/
+	width: 150px;
+	margin-left: auto; /*прижимаем контент ВЛЕВО*/
 }
 .footer-copyright a:hover,
 .footer-copyright a:focus{
