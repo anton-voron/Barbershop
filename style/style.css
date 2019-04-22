@@ -36,6 +36,11 @@ a{
 	background-position: 0 0;
 	background-repeat: repeat;
 }
+.inner-page .main-header{
+	margin-bottom: 50px;
+
+	background-color: #000000;
+}
 
 .button{
 font: inherit; /* - принудительно наследует параметры шрифта от родителя body*/
@@ -70,15 +75,21 @@ border: none;
 	flex-direction: column; /*Поворачиваем перпендикулярную ось */
 	align-items: center; /*Выравниваем ОБЪЕКТЫ по-центру*/
 }
+.inner-page .main-navigation{
+	align-items: flex-start; /* main-navigation уже является флекс контейнером, поэтому задаём выравнивания относительно поперечной оси
+задаём для того, чтобы прижать элементы к стартовой линии, если измениться высота 1 элемента, остальные по-прежнему будут прижаты к началу*/
+	flex-direction: row; /*Задаём стандартное горизонтальное направление главной оси, чтобы элементы стали по ширине страницы*/
+}
 .main-navigation-wrapper{
 	width: 100%;
-	margin-bottom: 60px;
 
 	background-color: #000000;
 }
 .main-navigation-wrapper .container{
 	display: flex;
 	justify-content: space-between; /* Распределяет контент равномерно между вем блоком*/
+
+	margin-bottom: 60px;
 }
 .main-header-logo{
 	order: 3;
@@ -88,6 +99,13 @@ border: none;
 	/*Временно для сетки*/	
 	/*display: block;*/ /* - до display:flex строчный элемент <а> (картинка в ссылке) 
 	нуждалась в преобразование в блочный элемент, когда преобразовали во флекс элемент display:block - уже не надо*/
+}
+.inner-page .main-header-logo{
+	order: 0; /*Возвращаем логотип в начало списка*/
+
+	width: 111px;
+	height: 24px;
+	padding: 23px 20px;
 }
 .site-navigation{
 	width: 620px;
@@ -108,6 +126,9 @@ border: none;
 	/*Временно для сетки*/
 	min-height: 70px;
 }
+.inner-page .user-navigation{
+	margin-left: auto;
+}
 .site-navigation a,
 .user-navigation a {
 	color: #f7f4f1;
@@ -123,6 +144,10 @@ border: none;
 .page-title{
 	font-size: 30px;
 	line-height: 42px;
+
+	padding: 0;
+	margin: 0;
+	margin-bottom: 15px;
 }
 .features{
 	margin-bottom: 80px;
@@ -285,6 +310,10 @@ border: none;
 }
 .breadcrumbs{
 	list-style: none;
+
+	padding: 0;
+	margin: 0;
+	margin-bottom: 55px;
 }
 .breadcrumbs a{
 	color: #000000;
@@ -297,12 +326,18 @@ border: none;
 .breadcrгmbs-current{
 	color: #aba9a7;
 }
+.catalog-columns{
+	display: flex; /*Добавили обёртку div для фильтров и каталога, чтобы удобно рассположить*/
+	justify-content: space-between; /* распределили свободное место между блоками*/
+}
 .filter fieldset{
 	border: none; /* Убираем поля у филдсет*/
 }
 .filters{
 	font-size: 14px;
 	line-height: 18px;
+
+	width: 180px;
 }
 .filters legend{
 	font-size: 24px;
@@ -323,13 +358,31 @@ border: none;
 }
 .catalog{
 	line-height: 18px;
+
+	width: 700px;
 }
 .catalog-list{
 	list-style: none;
+
+	padding: 0;
+	margin: 0;
+	margin-bottom: 25px;
+	display: flex; /*Выставляем карточки товара в список флекс-контейнера*/
+	flex-wrap: wrap; /* - делаем разрещение переноса элементов на новую строку*/
+	/*justify-content: space-between; /*Это не гибкая система, если будет меньшее количество карточек, то расстояние будет разное (не как в макете)
+	Поэтому лучше задавать точные margin (пример ниже)*/
 }
 .catalog-item{
 	background-color: #f8f8f8;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+	width: 220px;
+	margin-bottom: 20px;
+	margin-right: 20px; /*Сейчас 3 элемента не помещаются в 1 строку, так как размер контейнера 700,
+	а с учётом марджин лефт 20 пикс у нас получается итого 720 пикс, поэтому сбрасываем каждому 3-эму элементу правый отступ*/
+}
+.catalog-item:nth-child(3n){
+	margin-right: 0; /* сбросили правый марджин каждому 3-эму элементу*/
 }
 .catalog-item:hover{
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) /* Добавили тень для фотографии товара при наведении*/
@@ -352,7 +405,10 @@ border: none;
 	background-color: #e5e5e5;
 }
 .pegination-list{
-	list-style: none; 
+	list-style: none;
+
+	padding: 0;
+	margin: 0; 
 }
 .pagination-item a{
 	color: #ffffff;
