@@ -10,7 +10,7 @@ body{
 	font-family: "PT Sans Narrow", Arial, sans-serif;
 	font-size: 14px;
 	line-height: 24px;
-	font-weight: 700; /* в гугле когда мы подключили шрит стоияло именно это значение, прописуем для того, чтобы не было несоответствия*/
+	font-weight: 700; /* в гугле когда мы подключили шрифт стоияло именно это значение, прописуем для того, чтобы не было несоответствия*/
 	color: #f7f4f1;
 	text-transform: uppercase;
 
@@ -24,6 +24,26 @@ body{
 
 a{
 	text-decoration: none; /*- убирает подчеркивание */
+}
+img{  /*Задаём  размер картинки, чтобы она не выползала за родительский блок*/
+	max-width: 100%;
+	height: auto;
+}
+.visually-hidden:not(:focus):not(:active),
+input[type="checkbox"].visually-hidden,
+input[type="radio"].visually-hidden {
+	position: absolute;
+
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+
+	white-space: nowrap;
+	clip-path: inset(100%);
+	clip: rect(0 0 0 0);
+	overflow: hidden;
 }
 .main-header{
 	margin-bottom: 75px;
@@ -43,6 +63,10 @@ a{
 }
 
 .button{
+display: inline-block;
+padding: 10px 30px;
+margin-right: 16px; /*В макете 20 пикс, но так как это блочно-строчный эл у него есть встроенный маргин 4 пикселя, поэтому вычитаем и получаем 16*/
+
 font: inherit; /* - принудительно наследует параметры шрифта от родителя body*/
 
 text-align: center;
@@ -56,8 +80,14 @@ border: none;
 
 .button:hover,
 .button:focus,
-.buttio:active{ /* когда кнопка в активном состянии*/
+.button:active{ /* когда кнопка в активном состянии*/
 	background-color: #663d15;
+}
+.button.disabled, /*Состояние для отключенной кнопки*/
+.button:disabled{
+	cursor: default;
+	opacity: 0.5;
+	background-color: #000000;
 }
 .container{
 	width: 940px;
@@ -84,12 +114,12 @@ border: none;
 	width: 100%;
 
 	background-color: #000000;
+	margin-bottom: 60px;
 }
 .main-navigation-wrapper .container{
 	display: flex;
 	justify-content: space-between; /* Распределяет контент равномерно между вем блоком*/
 
-	margin-bottom: 60px;
 }
 .main-header-logo{
 	order: 3;
@@ -108,29 +138,60 @@ border: none;
 	padding: 23px 20px;
 }
 .site-navigation{
+	display: flex;
+	flex-wrap: wrap;
 	width: 620px;
 	margin: 0;
 	padding: 0;
 
 	list-style: none;
-
-	/*Временно для сетки*/
-	min-height: 70px;
 }
 .user-navigation{
-	width: 140px;
+	display: flex; /*у нас в ul вход есть иконка входа, делаем флекас чтобы поментить её туда*/
+	max-width: 140px; /*Вместо width используем max-width чтобы ужимать блок по контенту*/
 	margin: 0;
 	padding: 0;
 
 	list-style: none;
-	/*Временно для сетки*/
-	min-height: 70px;
+}
+.user-navigation .login-link { /*Работа с сылкой входа в меню*/
+	position: relative; /*Задаём относительню позицию для самой ссылки, чтобы работаь с absolute z-index*/
+	padding-left: 50px;
+	/*
+	Подсветка для блока чтобы знать его точный размер и позицианирование
+	background: rgba(234, 255, 45, 0.2);
+	box-shadow: inset 0 0 0 2px rgb(234, 255, 45);*/
+}
+.login-link::before{ /*Сделали виртуальный тег чтобы стилизовать его*/
+	content: ""; /*Это строчный элемент поєтому делаем position: absolute*/
+
+	position: absolute;
+	top: 26px;
+	left: 24px;
+	width: 16px;
+	height: 18px;
+
+	background-image: url("../img/login-link.svg"); /*Добавляем иконку в ссылку*/
+	background-repeat: no-repeat;
+	background-position: 0 0;
+
+	opacity: 0.3;
+}
+.login-link:hover::before, /*Такая странная разметка, потому что наведение клик итд не действуют 
+на виртуальный псевдо элемент, нужно плясать от состояния настоящего элемента*/
+.login-link:focus::before,
+.login-link:active::before{
+	opacity: 1;
 }
 .inner-page .user-navigation{
 	margin-left: auto;
 }
 .site-navigation a,
 .user-navigation a {
+	display: block; /*Так как у нас ссылка - это строчный элемент, необходимо преобразовать в блочный, чтобы щадавать падинги, мароджин итд
+	в вертикальном направлении (у строчных падинги работаю только в горизонтальном направлении)!!!!*/
+	padding: 25px 20px;
+
 	color: #f7f4f1;
 }
 /* Настройка отрисовки при наведении  и клике*/
@@ -147,7 +208,7 @@ border: none;
 
 	padding: 0;
 	margin: 0;
-	margin-bottom: 15px;
+	margin-bottom: 25px;
 }
 .features{
 	margin-bottom: 80px;
@@ -170,21 +231,48 @@ border: none;
 .features-item h3{
 	font-size: 30px;
 	line-height: 42px;
+
+	margin: 0;
+	margin-bottom: 60px;
+	
+	position: relative;
+}
+.features-item h3::after {
+	content: "";
+
+	position: absolute;
+	bottom: -35px; /*Задаём позицию для ромбика*/
+	left:  50%; /*Распологаем начало ромбика по центу относительного блока*/
+	margin-left: -10px; /*Отнимаем половину размера ромбика чтобы отцентровать его относительно текста*/
+	width: 20px;
+	height: 20px;
+
+	background-color: #ffffff;
+
+	transform: rotate(45deg); /*Повернули ромбик на 45 градусов*/
+}
+.fiature-item p {
+	margin: 0 10px;
 }
 .index-columns{
-	color: #000000;
-
-	background-color: #f7f4f1;
-	background-image: url("../img/bg-section.jpg");
-	background-position: 0 0;
-	background-repeat: repeat;
-
 	padding: 50px 80px;
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 35px;
+
+	color: #000000;
+
+	background-color: #f7f4f1;
+	background-image: 
+		url("../img/shadow-bg.png"), /*Задаём разделитель-тень как background чтобы не париться */
+		url("../img/bg-section.jpg"); /*Задаём шумный фон (картинку которую вырезали из ШФ)*/
+	background-position: center, 0 0; /*Нужно задать парраметры для 2 фонов они задаются в том же порядке (url 1 - центр), (url 2 - от начала блока)*/
+	background-repeat:no-repeat, repeat; /*Нужно задать парраметры для 2 фонов они задаются в том же порядке (url 1 - без повторения), (url 2 - с повторением)*/
 }
 .index-columns h2{
+	margin: 0px;
+	margin-bottom: 25px;
+
 	font-size: 30px;
 	line-height: 42px;
 }
@@ -192,7 +280,17 @@ border: none;
 	width: 380px;
 }
 .news-list{
+	margin: 0;
+	margin-bottom: 25px;
+	padding: 0;
+
 	list-style: none;
+}
+.news-item {
+	margin-bottom: 25px;
+}
+.news-itemp {
+	margin: 0;
 }
 /* Убираем апперкейс который задали в body на весь документ*/
 .news-list time{
@@ -201,17 +299,68 @@ border: none;
 .gallery{
 	width: 300px;
 }
+.gallery-container{
+	position: relative;
+
+	height: 260px;
+}
 .gallery-content{
+	height: 164px;
+	margin: 0; /* У ТЕГА FIGURE ЕСТЬ ОТСТУПЫ ПО УМОЛЧАНИЮ КТР МЫ ДОЛЖНЫ КОНТРОЛИТЬ*/
 	background-color: #e5e5e5;
 	border: 7px solid #ffffff;
+}
+.gallery-content img{
+	width: 286px;
+	height: 164px;
+}
+.gallery-button{
+	box-sizing: border-box; /*Задаём границы, чтобы элемент не вылезал за границы родительского блока даже если будет большоой падинг*/
+	
+	position: absolute;
+	bottom: 0;
+
+	width: 140px;
+	margin: 0;
+}
+.gallery-button-back{
+	left: 0;
+}
+.gallery-button-next{
+	right: 0;
 }
 .contacts{
 	width: 380px;
 }
+.contacts p{
+	margin: 0;
+	margin-bottom: 25px;
+}
 .appointment{
 	width: 300px;
 }
+.appointment-info {
+	margin: 0;
+	margin-bottom: 15px;
+}
+.appointment-form{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.appointment-item{
+	width: 140px;
+	margin: 0;
+	margin-bottom: 10px;
+}
 .appointment-item input{ /*стилизуем формы для ввода*/
+	box-sizing: border-box;
+	width: 140px;
+	padding-top: 8px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 7px;
+
 	font: inherit; /* Наследуем стиль тексата от родительского body*/
 
 	background-color: transparent;
@@ -219,6 +368,16 @@ border: none;
 }
 .appointment-item input:focus{
 	border-color: #663d15;
+}
+.appointment-item label {
+	display: block;
+	margin-bottom: 9px;
+	margin-left: 15px;
+}
+.appointment .button {
+	width: 100%; /*Так как у нас флекс элементы, сделаем ширину кнопки 100% чтобы не дать другим элементам залезть на её строку*/
+	margin: 0;
+	margin-top: 10px; 
 }
 .main-footer{
 	color: #ffffff;
@@ -252,10 +411,34 @@ border: none;
 }
 .footer-social ul{
 	list-style: none;
+
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 141px;
+	margin: 0 auto;
+	padding: 0;
 }
 .social-button{
+	display: flex; /*Сделали флекс внутри самой ссылки и зацентровали контент в ней*/
+	align-items: center;
+	justify-content: center;
+
+	width: 43px;
+	height: 43px;
+
 	color: #ffffff;
 	text-decoration: none;
+
+	background-color: #000000;
+}
+.social-button:hover,
+.social-button:focus {
+	background-color: #ffffff;
+}
+.social-button:hover path,  /*Залазим внутрь svg чтобы перезалить цвет (поэтому мы и добавляли иконки sgv текстом)*/
+.social-button:focus path {
+	fill: #000000;
 }
 .footer-copyright{
 	text-align: center;
@@ -269,6 +452,18 @@ border: none;
 	color: #000000;
 
 	background-color: #ffffff;
+}
+.footer-social b {
+	display: block;
+	margin-bottom: 15px;
+}
+.footer-copyright b {
+	display: block;
+	margin-bottom: 15px;
+}
+.footer-copyright .button{
+	display: block;
+	margin-right: 0;
 }
 .modal{
 	color: #000000;
@@ -368,7 +563,7 @@ border: none;
 	margin: 0;
 	margin-bottom: 25px;
 	display: flex; /*Выставляем карточки товара в список флекс-контейнера*/
-	flex-wrap: wrap; /* - делаем разрещение переноса элементов на новую строку*/
+	flex-wrap: wrap; /* - делаем размещение переноса элементов на новую строку*/
 	/*justify-content: space-between; /*Это не гибкая система, если будет меньшее количество карточек, то расстояние будет разное (не как в макете)
 	Поэтому лучше задавать точные margin (пример ниже)*/
 }
@@ -425,6 +620,10 @@ border: none;
 
 	background-color: #ffffff;
 }
+/*CATALOG-ITEM STYLE*/
+.product-photos{
+	width: 460px;
+}
 .product-photo-preview{
 	list-style: none;
 }
@@ -445,6 +644,9 @@ border: none;
 	text-align: center;
 	background-color: #e5e5e5;
 }
+.product-info{
+	width: 390px;
+}
 .product-info h3{
 	font-size: 24px;
 	line-height: 30px;
@@ -457,6 +659,9 @@ border: none;
 	line-height: 55px;
 	
 	text-align: center;
+	padding: 0px 27px;
+	margin: 0px 160px;
+	margin-bottom: 70px;
 }
 .service-info{
 	text-align: left;
@@ -464,10 +669,17 @@ border: none;
 .service-info h3{
 	font-size: 24px;
 	line-height: 30px;
-}
 
+	margin-bottom: 35px;
+}
+.brands-list{
+	width: 380px;
+}
 .brands-list ul{
 	list-style: none;
+}
+.price-list{
+	width: 460px;
 }
 table{
 	border-collapse: collapse; /* Убираем пустые промежутки между ячейками*/
@@ -477,9 +689,27 @@ table{
 	border: 2px solid #000000;
 
 	text-align: left;
+	padding-left: 20px;
+
+	width: 230px;
 }
 .price-list-table td{
 	border: 2px solid #000000;
 
 	text-align: center;
+
+	width: 230px;
 }
+.describtion-first-part{
+	width: 380px;
+	margin: 0;
+	padding: 0;
+}
+.describtion-second-part{
+	width: 380px;
+	
+	margin: 0;
+	margin-right: 80px;
+	padding: 0;
+}
+
