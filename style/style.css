@@ -147,7 +147,7 @@ border: none;
 	list-style: none;
 }
 .user-navigation{
-	display: flex; /*у нас в ul вход есть иконка входа, делаем флекас чтобы поментить её туда*/
+	display: flex; /*у нас в ul вход есть иконка входа, делаем флекс чтобы поместить её туда*/
 	max-width: 140px; /*Вместо width используем max-width чтобы ужимать блок по контенту*/
 	margin: 0;
 	padding: 0;
@@ -188,7 +188,7 @@ border: none;
 }
 .site-navigation a,
 .user-navigation a {
-	display: block; /*Так как у нас ссылка - это строчный элемент, необходимо преобразовать в блочный, чтобы щадавать падинги, мароджин итд
+	display: block; /*Так как у нас ссылка - это строчный элемент, необходимо преобразовать в блочный, чтобы задавать падинги, мароджин итд
 	в вертикальном направлении (у строчных падинги работаю только в горизонтальном направлении)!!!!*/
 	padding: 25px 20px;
 
@@ -201,6 +201,9 @@ border: none;
 .user-navigation a:focus{
 	background-color: #242424;
 }
+.site-current{
+	border-bottom: 4px solid #ffffff;
+}
 
 .page-title{
 	font-size: 30px;
@@ -208,7 +211,7 @@ border: none;
 
 	padding: 0;
 	margin: 0;
-	margin-bottom: 25px;
+	margin-bottom: 20px;
 }
 .features{
 	margin-bottom: 80px;
@@ -505,15 +508,38 @@ border: none;
 }
 .breadcrumbs{
 	list-style: none;
+	display: flex;
 
 	padding: 0;
 	margin: 0;
 	margin-bottom: 55px;
+
+
 }
 .breadcrumbs a{
 	color: #000000;
-}
+	display: block;
+	padding: 0;
+	margin: 0;
+	padding-right: 40px;
+	position: relative;
 
+}
+.breadcrumbs a::after{
+	content: "";
+
+	position: absolute;
+	top: 7px; /*Задаём позицию для ромбика*/
+	left: 77%; /*Распологаем начало ромбика как на макете относительного блока*/
+	margin-left: -4px; /*Отнимаем половину размера ромбика чтобы отцентровать его относительно текста*/
+	width: 8px;
+	height: 8px;
+
+	background-color: #000000;
+
+	transform: rotate(45deg); /*Повернули ромбик на 45 градусов*/
+
+	}
 .breadcrumbs a:hover,
 .breadcrumbs a:focus{
 	text-decoration: underline;
@@ -525,22 +551,34 @@ border: none;
 	display: flex; /*Добавили обёртку div для фильтров и каталога, чтобы удобно рассположить*/
 	justify-content: space-between; /* распределили свободное место между блоками*/
 }
-.filter fieldset{
-	border: none; /* Убираем поля у филдсет*/
-}
 .filters{
 	font-size: 14px;
 	line-height: 18px;
 
 	width: 180px;
 }
+.filter fieldset{
+	border: none; /* Убираем поля у филдсет*/
+	padding: 0;
+	margin: 0;
+	margin-bottom: 50px;
+}
+.filter ul{
+	padding: 0;
+	margin: 0;
+}
 .filters legend{
 	font-size: 24px;
 	line-height: 30px;
+	margin-bottom: 30px;
 }
 .filters li{
 	list-style: none;
 	line-height: 18px;
+}
+.filter-option{
+	display: flex;
+	margin-bottom: 17px;
 }
 .filter-option: hover + label,
 .filter-option: focus + label{ /* Добавляем цвета шрифта и подписи на форме при наведении и клике*/
@@ -550,6 +588,43 @@ border: none;
 	color: #000000;
 
 	opacity: 0.5; /*Прозрачность*/
+}
+.check label{
+	padding-left: 45px;
+	position: relative;
+}
+.check label::before{
+	content: "";
+
+	position: absolute;
+	left: 0px;
+	width: 18px;
+	height: 18px;
+	border: 2px solid #000000;
+}
+.check label:active::before{
+	background-image: url("../img/cross.png");
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.rad label{
+	padding-left: 45px;
+	position: relative;
+}
+.rad label:before{
+	content: "";
+
+	position: absolute;
+	left: 0px;
+	width: 18px;
+	height: 18px;
+	border: 2px solid #000000;
+	border-radius: 100%
+}
+.rad label:active::before{
+	background-image: url("../img/radio.png");
+	background-position: center;
+	background-repeat: no-repeat;
 }
 .catalog{
 	line-height: 18px;
@@ -590,22 +665,54 @@ border: none;
 .catalog-category{
 	text-transform: none;
 }
+
 .catalog-item-image,
-.catalog-item-price{
+.catalog-item-price {
     text-align: center;
+    margin-bottom: 17px;
+}
+.catalog-item h3 {
+	padding: 0 17px;
+}
+.catalog-item-price{
+	display: flex;
+
 }
 .catalog-item-price b{
-	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 109px;
+	height: 43px;
+	margin-left: auto;
 
 	background-color: #e5e5e5;
 }
+.catalog-item-price a{
+	margin-right: auto;
+	padding-right: 19px;
+	padding-left: 19px;
+
+
+}
 .pegination-list{
 	list-style: none;
+	display: flex;
 
 	padding: 0;
 	margin: 0; 
 }
+.pagination-item {
+	margin-right: 7px;
+}
 .pagination-item a{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 43px;
+	height: 43px;
+
 	color: #ffffff;
 
 	background-color: #000000;
@@ -615,7 +722,13 @@ border: none;
 .pagination-item a:active{
 	background-color: #663d15;
 }
-.pagination-item-current a{
+.current a{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 43px;
+	height: 43px;
+
 	color: #000000;
 
 	background-color: #ffffff;
@@ -626,26 +739,60 @@ border: none;
 }
 .product-photo-preview{
 	list-style: none;
-}
-.product-photo-preview li{
-	box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1); /* Задаём тени для фото*/
+	padding: 0;
+	margin: 0;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 50px;
 }
 .product-photo-full{
 	box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+	margin-bottom: 24px;
+}
+.product-photo-preview li{
+	box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1); /* Задаём тени для фото*/
+	padding: 0;
+	margin: 0;
+}
+.product-wrapper{
+	display: flex;
+	justify-content: space-between;
+}
+.product-availability{
+	margin-right: auto;
+}
+.product-article{
+	margin-left: auto;
 }
 .product-article{
 	color: #aeaeae;
 	text-align: right;
 }
+.product-text{
+	margin-bottom: 40px;
+}
 .product-price{
-	text-align: left;
+	display: flex;
+	margin-bottom: 65px;
 }
 .product-price b {
-	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 110px;
+	height: 45px;
+
 	background-color: #e5e5e5;
+}
+.product-price a{
+	margin-right: auto;
+	padding-right: 19px;
+	padding-left: 19px;
 }
 .product-info{
 	width: 390px;
+	padding-top: 25px;
 }
 .product-info h3{
 	font-size: 24px;
@@ -653,8 +800,29 @@ border: none;
 }
 .product-info ul{
 	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.product-info li{
+	padding-left: 24px;
+	position: relative;
+
+	/*background: rgba(234, 255, 45, 0.2);
+	box-shadow: inset 0 0 0 2px rgb(234, 255, 45);*/
+}
+.product-info li::before{
+	content: "";
+	position: absolute;
+	top: 7px;
+	left: 0px;
+	width: 7px;
+	height: 7px;
+
+	background-color: #000000;
+	transform: rotate(45deg);
 }
 .service-title{
+	display: block;
 	font-size: 48px;
 	line-height: 55px;
 	
@@ -674,9 +842,27 @@ border: none;
 }
 .brands-list{
 	width: 380px;
+	margin-bottom: 65px;
 }
 .brands-list ul{
 	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.brands-list li {
+	padding-left: 24px;
+	position: relative;
+}
+.brands-list li::before{
+	content: "";
+	position: absolute;
+	top: 7px;
+	left: 0px;
+	width: 7px;
+	height: 7px;
+
+	background-color: #000000;
+	transform: rotate(45deg);
 }
 .price-list{
 	width: 460px;
@@ -692,6 +878,7 @@ table{
 	padding-left: 20px;
 
 	width: 230px;
+	height: 43px;
 }
 .price-list-table td{
 	border: 2px solid #000000;
@@ -699,6 +886,7 @@ table{
 	text-align: center;
 
 	width: 230px;
+	height: 43px;
 }
 .describtion-first-part{
 	width: 380px;
