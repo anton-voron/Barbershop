@@ -40,28 +40,47 @@
 					<fieldset>
 						<legend>Производители:</legend>
 						<ul>
-							<li class="filter-option check">
-								<input type="checkbox" name="baxter-of-california" id="filter-baxter-of-california" class="visually-hidden filter-input filter-input-checkbox" checked="+">
-								<label for="filter-baxter-of-california">Baxter of California</label>
+							<li class="filter-option">
+								<label class="filter-checkbox">
+									<input type="checkbox" name="baxter-of-california" id="filter-baxter-of-california" class="visually-hidden">
+									<span class="checkbox-indicator"></span>
+									Baxter of California
+								</label>
 							</li>
-							<li class="filter-option check">
-								<input type="checkbox" name="mr-natty" id="filter-mr-natty" class="visually-hidden filter-input filter-input-checkbox">
-								<label for="filter-mr-natty">Mr Natty</label>
+							<li class="filter-option">
+								<label class="filter-checkbox">
+									<input type="checkbox" name="mr-natty" id="filter-mr-natty" class="visually-hidden">
+									<span class="checkbox-indicator"></span>
+									Mr Natty
+								</label>
 							</li>
-							<li class="filter-option check">
-								<input type="checkbox" name="baxter-suavecito" id="filter-suavecito" class="visually-hidden filter-input filter-input-checkbox" checked="+">
-								<label for="filter-suavecito">Suavecito</label>
+							<li class="filter-option">
+								<label class="filter-checkbox">
+									<input type="checkbox" name="baxter-suavecito" id="filter-suavecito" class="visually-hidden" checked="+">
+									<span class="checkbox-indicator"></span>
+									Suavecito
+								</label>
 							</li>
-							<li class="filter-option check">
-								<input type="checkbox" name="malin+goetz" id="filter-malin+goetz" class="visually-hidden filter-input filter-input-checkbox">
-								<label for="">Malin+Goetz</label>
+							<li class="filter-option">
+								<label class="filter-checkbox">
+									<input type="checkbox" name="malin+goetz" id="filter-malin+goetz" class="visually-hidden">
+									<span class="checkbox-indicator"></span>
+									Malin+Goetz
+								</label>
 							</li>
-							<li class="filter-option check">
-								<input type="checkbox" name="murray’s" id="filter-murray’s" class="visually-hidden filter-input filter-input-checkbox">
-								<label for="">Murray’s</label>
+							<li class="filter-option">
+								<label class="filter-checkbox">
+									<input type="checkbox" name="murray’s" id="filter-murray’s" class="visually-hidden">
+									<span class="checkbox-indicator"></span>
+									Murray’s
+								</label>
 							</li>
-							<li class="filter-option check">
-								<input type="checkbox" name="american-crew" id="filter-american-crew" class="visually-hidden filter-input filter-input-checkbox" checked="+"><label for="">American Crew</label>
+							<li class="filter-option">
+								<label class="filter-checkbox">
+									<input type="checkbox" name="american-crew" id="filter-american-crew" class="visually-hidden" checked="+">
+									<span class="checkbox-indicator"></span>
+									American Crew
+								</label>
 							</li>
 						</ul>
 					</fieldset>
@@ -69,16 +88,25 @@
 						<legend>Группы товаров:</legend>
 						<ul>
 							<li class="filter-option rad">
-								<input  class="visually-hidden filter-input filter-input-radio" type="radio" name="product-group" id="filter-shaves" value="shaving">
-								<label for="filter-shaves">Бритвенные принадлежности</label>
+								<label class="filter-rad">
+									<input  class="visually-hidden" type="radio" name="product-group" id="filter-shaves" value="shaving">
+									<span class="radio-indicator"></span>
+									Бритвенные принадлежности
+								</label>
 							</li>
 							<li class="filter-option rad">
-								<input class="visually-hidden filter-input filter-input-radio" type="radio" name="product-group" id="filter-care" value="hair-care">
-								<label for="filter-care">Средства для ухода</label>
+								<label class="filter-rad">
+									<input class="visually-hidden" type="radio" name="product-group" id="filter-care" value="hair-care">
+									<span class="radio-indicator"></span>
+									Средства для ухода
+								</label>
 							</li>
 							<li class="filter-option rad">
-								<input class="visually-hidden filter-input filter-input-radio" type="radio" name="product-group" id="filter-accessories" value="accessories">
-								<label for="filter-accessories">Аксуссуары</label>
+								<label class="filter-rad">
+									<input class="visually-hidden" type="radio" name="product-group" id="filter-accessories" value="accessories">
+									<span class="radio-indicator"></span>
+									Аксуссуары
+								</label>
 							</li>
 						</ul>
 					</fieldset>
@@ -225,10 +253,10 @@
 					</p>
 			</div>
 	</footer>
-	<section class="modal modal-login">
+			<section class="modal modal-login">
 				<h2>Личный кабинет</h2>
-				<p>Введите свой логин и пароль.</p>
-				<form action="https://echo.htmlacademy.ru/" class="login-form" method="post">
+				<p class="modal-description">Введите пожалуйста свой логин и пароль.</p>
+				<form class="login-form" action="https://echo.htmlacademy.ru/" method="post">
 					<p>
 						<label for="user-login" class="visually-hidden">Логин</label>
 						<input class="login-icon-user" id="user-login" type="text" name="login" value="" placeholder="Логин">
@@ -237,23 +265,25 @@
 						<label for="user-password" class="visually-hidden">Пароль</label>
 						<input class="login-icon-password" id="user-password" type="password" name="password" value="" placeholder="Пароль">
 					</p>
-					<p class="login-password-info">
+					<p class="login-help">
 						<label  class="login-checkbox">
-							<input type="checkbox" name="remember" class="visually-hidden">
+						<input type="checkbox" name="remember" class="visually-hidden">
 						<span class="checkbox-indicator"></span> Запомните меня
 						</label>
-					<a class="restore" href="#">Я забыл пороль!</a>	
+						<a class="restore" href="#">Я забыл пороль!</a>	
 					</p>
 					<button class="button" type="submit">Войти</button>
 				</form>
-				<button class="button" type="button">Закрыть</button>
+				<button class="modal-close" type="button">Закрыть</button>
 			</section>
-			<section class="modal modal-map">
+			<section class="modal modal-map">			
 				<h2 class="visually-hidden">Как добраться</h2>
 				<p>
-					<img src="img/map.jpg" width="780" height="560" alt="Офис компании по адресу Г. САНКТ-ПЕТЕРБУРГ, УЛ. Б. КОНЮШЕННАЯ, Д. 19/8">
+				<img src="img/map.jpg" width="780" height="560" alt="Офис компании по адресу Г. САНКТ-ПЕТЕРБУРГ, УЛ. Б. КОНЮШЕННАЯ, Д. 19/8">
 				</p>
 				<button class="modal-close" type="button">Закрыть</button>
 			</section>
+			<div class="modal-overlay"></div>
+			<script type="text/javascript"></script>
 </body>
 </html>

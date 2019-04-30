@@ -157,8 +157,8 @@
 			</footer>
 			<section class="modal modal-login">
 				<h2>Личный кабинет</h2>
-				<p>Введите свой логин и пароль.</p>
-				<form action="https://echo.htmlacademy.ru/" class="login-form" method="post">
+				<p class="modal-description">Введите пожалуйста свой логин и пароль.</p>
+				<form class="login-form" action="https://echo.htmlacademy.ru/" method="post">
 					<p>
 						<label for="user-login" class="visually-hidden">Логин</label>
 						<input class="login-icon-user" id="user-login" type="text" name="login" value="" placeholder="Логин">
@@ -167,23 +167,25 @@
 						<label for="user-password" class="visually-hidden">Пароль</label>
 						<input class="login-icon-password" id="user-password" type="password" name="password" value="" placeholder="Пароль">
 					</p>
-					<p class="login-password-info">
+					<p class="login-help">
 						<label  class="login-checkbox">
-							<input type="checkbox" name="remember" class="visually-hidden">
+						<input type="checkbox" name="remember" class="visually-hidden">
 						<span class="checkbox-indicator"></span> Запомните меня
 						</label>
-					<a class="restore" href="#">Я забыл пороль!</a>	
+						<a class="restore" href="#">Я забыл пороль!</a>	
 					</p>
 					<button class="button" type="submit">Войти</button>
 				</form>
-				<button class="button" type="button">Закрыть</button>
+				<button class="modal-close" type="button">Закрыть</button>
 			</section>
-			<section class="modal modal-map">
+			<section class="modal modal-map">			
 				<h2 class="visually-hidden">Как добраться</h2>
 				<p>
-					<img src="img/map.jpg" width="780" height="560" alt="Офис компании по адресу Г. САНКТ-ПЕТЕРБУРГ, УЛ. Б. КОНЮШЕННАЯ, Д. 19/8">
+				<img src="img/map.jpg" width="780" height="560" alt="Офис компании по адресу Г. САНКТ-ПЕТЕРБУРГ, УЛ. Б. КОНЮШЕННАЯ, Д. 19/8">
 				</p>
 				<button class="modal-close" type="button">Закрыть</button>
 			</section>
+			<div class="modal-overlay"></div>
+			<script type="text/javascript"></script>
 </body>
 </html>

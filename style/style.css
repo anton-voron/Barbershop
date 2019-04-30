@@ -1,7 +1,6 @@
 html,
 body{
 	min-width: 1122px;
-	min-height: 1750px;
 }
 body{
 	margin: 0;
@@ -157,7 +156,7 @@ border: none;
 .user-navigation .login-link { /*Работа с сылкой входа в меню*/
 	position: relative; /*Задаём относительню позицию для самой ссылки, чтобы работаь с absolute z-index*/
 	padding-left: 50px;
-	/*
+	/*  
 	Подсветка для блока чтобы знать его точный размер и позицианирование
 	background: rgba(234, 255, 45, 0.2);
 	box-shadow: inset 0 0 0 2px rgb(234, 255, 45);*/
@@ -578,54 +577,91 @@ border: none;
 }
 .filter-option{
 	display: flex;
+	justify-content: space-between;
 	margin-bottom: 17px;
 }
-.filter-option: hover + label,
-.filter-option: focus + label{ /* Добавляем цвета шрифта и подписи на форме при наведении и клике*/
+.filter-checkbox{
+	position: relative;
+
+	padding-left: 45px;
+
+	cursor: pointer; /*Говорим, что это индикатор*/ 
+}
+.filter-checkbox:hover,
+.filter-checkbox:focus {
 	color: #663d15;
 }
-.filter-option: disable + label{ /* Добавляем стить для заблокированного поля*/
-	color: #000000;
+.filter-checkbox input[type="checkbox"] + .checkbox-indicator {
+	position: absolute;
+	top: 0;
+	left: 0;
 
-	opacity: 0.5; /*Прозрачность*/
+	width: 18px;
+	height: 18px;
+
+	border: 2px solid #000000;
+
 }
-.check label{
-	padding-left: 45px;
-	position: relative;
-}
-.check label::before{
+.filter-checkbox input[type="checkbox"]:checked + .checkbox-indicator::before,
+.filter-checkbox input[type="checkbox"]:checked + .checkbox-indicator::after {
 	content: "";
 
 	position: absolute;
-	left: 0px;
-	width: 18px;
-	height: 18px;
-	border: 2px solid #000000;
+	top: 8px;
+	left: 2px;
+
+	width: 14px;
+	height: 2px;
+
+	background-color: #000000;
+
 }
-.check label:active::before{
-	background-image: url("../img/cross.png");
-	background-position: center;
-	background-repeat: no-repeat;
+.filter-checkbox input[type="checkbox"]:checked + .checkbox-indicator::before {
+	transform: rotate(45deg);
+
 }
-.rad label{
-	padding-left: 45px;
+.filter-checkbox input[type="checkbox"]:checked + .checkbox-indicator::after {
+	transform: rotate(-45deg);
+
+}
+.filter-rad{
 	position: relative;
+
+	padding-left: 45px;
+
+	cursor: pointer;
 }
-.rad label:before{
+.filter-rad:hover,
+.filter-rad:focus {
+	color: #663d15;
+}
+.filter-rad input[type="radio"] + .radio-indicator{
 	content: "";
 
 	position: absolute;
-	left: 0px;
+	top: 0;
+	left: 0;
+
 	width: 18px;
 	height: 18px;
 	border: 2px solid #000000;
-	border-radius: 100%
+	border-radius: 50%;
 }
-.rad label:active::before{
-	background-image: url("../img/radio.png");
-	background-position: center;
-	background-repeat: no-repeat;
+.filter-rad input[type="radio"]:checked + .radio-indicator::before{
+	content: "";
+
+	position: absolute;
+	top: 4px;
+	left: 4px;
+
+	width: 8px;
+	height: 8px;
+	border: 1px solid #000000;
+	border-radius: 50%;
+
+	background-color: #000000;
 }
+
 .catalog{
 	line-height: 18px;
 
@@ -900,4 +936,185 @@ table{
 	margin-right: 80px;
 	padding: 0;
 }
+/* Всплывающие окна */
+.modal {
+	position: fixed; /*Так как наши модалки перекрывают весь контент, задаём им position: fixed;*/
 
+	color: #000000;
+
+	background-color: #f8f3f0;
+	background-image: url("../img/bg-section.jpg");
+	background-position: 0 0 ;
+	background-repeat: repeat;
+	box-shadow: 0 30px 50px rgba(0, 0, 0, 0.7); /*Делаем тень 30 пикселей смещаем вниз, 50 пикселей размытие*/
+
+	z-index: 2;
+}
+.modal-overlay { /*ДЕЛАЕМ ЗАТЕМНЕНИЕ ЭКРАНА КОГДА ВЫЗЫВАЕТСЯ МОДАЛКА*/
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1;
+	display: none;
+}
+.modal-login{
+	top: 120px;
+	left: 50%;
+
+	width: 300px;
+	padding: 50px 80px;
+	
+	transform: translateX(-50%); /*центруем элемент модального окна с учётом его размера*/
+
+	display: none; /* ВРЕМЕННО*/
+}
+.modal-close{
+	position: absolute;
+	top: 0;
+	right: -34px;
+
+	width: 22px;
+	height: 22px;
+
+	font-size: 0; /*Убираем текст внутри кнопки*/
+
+	background-color: transparent; /*задаём прозрачностькнопке*/
+	border: 0;
+
+	cursor: pointer;
+}
+.modal-close::before,
+.modal-close::after{
+	content: "";
+
+	position: absolute;
+	top: 10px;
+	left: 2px;
+
+	width: 19px;
+	height: 3px;
+
+	background-color: #d0d0d0;
+}
+.modal-close::before{
+	transform: rotate(45deg);
+}
+.modal-close::after{
+	transform: rotate(-45deg);
+}
+.modal-login h2 {
+	margin: 0;
+	margin-bottom: 20px;
+
+	font-size: 30px;
+	line-height: 42px;
+}
+.modal-description{
+	margin: 0;
+	margin-bottom: 10px;
+}
+.login-form p {
+	margin: 0px;
+	margin-bottom: 10px;
+}
+.login-form input[type="text"],
+.login-form input[type="password"] {
+	box-sizing: border-box; /*Ужимаем инпут под размер модального окна, чтобы не вылазел ха пределы*/
+	width: 300px;
+	padding: 10px 15px;
+	padding-right: 40px;
+
+	font: inherit;
+	color: #000000;
+	text-transform: uppercase;
+
+	background-color: #f9f6f3;
+	border: 2px solid #000000;
+}
+.login-form:focus {
+	border-color: #663d15;
+}
+.login-icon-user{
+	background-image: url("../img/user-login.svg"); /*Делаем через бекграунд для инпута, так как в поля формы нельзя вставить псевдоэлемент ::before*/
+	background-position: 270px center;
+	background-repeat: no-repeat;
+}
+.login-icon-password{
+	background-image: url("../img/lock.svg");
+	background-position: 270px center;
+	background-repeat: no-repeat;
+}
+.login-form .login-help {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin: 15px 0;
+}
+.login-checkbox{
+	position: relative;
+
+	padding-left: 30px;
+
+	cursor: pointer; /*Говорим, что это индикатор*/
+}
+.login-checkbox:hover,
+.login-checkbox:focus{
+	color: #663d15;
+}
+.login-checkbox input[type="checkbox"] + .checkbox-indicator { /* + вложенности не добавляет*/
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	width: 17px;
+	height: 17px;
+
+	border: 2px solid #000000;
+}
+.login-checkbox input[type="checkbox"]:focus + .checkbox-indicator { /* + вложенности не добавляет*/
+border-color: #663d15;
+outline: thin dotted;
+outline: 5px auto -webkit-focus-ring-color; /*Нужно задать рамку для чекбокса которая через + переаётся для checkbox-indicator */
+}
+.login-checkbox input[type="checkbox"]:checked + .checkbox-indicator::before,
+.login-checkbox input[type="checkbox"]:checked + .checkbox-indicator::after { /* + вложенности не добавляет*/
+content: "";
+
+position: absolute;
+top: 8px;
+left: 1px;
+
+width: 15px;
+height: 2px;
+
+background-color: #000000;
+}
+.login-checkbox input[type="checkbox"]:checked + .checkbox-indicator::before {
+	transform: rotate(45deg);
+}
+.login-checkbox input[type="checkbox"]:checked + .checkbox-indicator::after {
+	transform: rotate(-45deg);
+}
+.login-form .button {
+	width: 100%;
+	margin-right: 0px;
+}
+.modal-map {
+	top: 7%;
+	left: 50%;
+
+	width: 760px;
+	height: 561px;
+	border: 7px solid white; 
+
+	transform: translateX(-50%);
+
+	display: none; /*ВРЕМЕННО	*/
+}
+.modal-map p{
+	margin: 0; 
+}
