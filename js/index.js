@@ -34,16 +34,13 @@ link.addEventListener("click", function (evt) {
 		});
 	});
 close.addEventListener("click", function(evt){
-		evt.preventDefault(); /* У кнопки нужно отменить действие по умолчанию для того, чтобы в случае изменения  кнопки на ссылку мы заранее избежали перехода*/
-		popup.classList.remove("modal-show"); /*благодаря свойству remove удаляем класс, который создали в CSS файле*/
-		popup.classList.remove("modal-error"); /*Не забываем удалять трясучку при закрытии модалки*/
+	evt.preventDefault(); /* У кнопки нужно отменить действие по умолчанию для того, чтобы в случае изменения  кнопки на ссылку мы заранее избежали перехода*/
+	popup.classList.remove("modal-show"); /*благодаря свойству remove удаляем класс, который создали в CSS файле*/		popup.classList.remove("modal-error"); /*Не забываем удалять трясучку при закрытии модалки*/
 	});
 window.addEventListener("keydown", function (evt) {
-	
-		if(popup.classList.contains("modal-show")) {
-			if(evt.keyCode == 27) {
-			evt.preventDefault(); /*Отменяем встроенное браузерное действие при нажатии ecs - выход из full srcreen режима*/
-			popup.classList.remove("modal-show");
+	if(popup.classList.contains("modal-show")) {
+		if(evt.keyCode == 27) {
+		evt.preventDefault(); /*Отменяем встроенное браузерное действие при нажатии ecs - выход из full srcreen режима*/			popup.classList.remove("modal-show");
 		}
 	}
 });
